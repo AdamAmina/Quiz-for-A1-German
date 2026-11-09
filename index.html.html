@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deutsch A1 – Easy Practice Test</title>
+<style>
+:root{
+  --bg:#f6f5f1;--card:#ffffff;--ink:#1d1d1f;--muted:#6b6b70;--line:#e2e0d8;
+  --accent:#c8102e;--accent-ink:#ffffff;--gold:#e8b100;
+  --ok:#1a7f4b;--ok-bg:#e6f4ec;--bad:#b42318;--bad-bg:#fdeceb;--part:#9a6700;--part-bg:#fff4d6;--chip:#f0eee7;--arbg:#f3f7fb;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#141416;--card:#1e1e21;--ink:#f2f2f3;--muted:#a0a0a8;--line:#333338;
+    --accent:#ff4d62;--accent-ink:#1a0006;--gold:#f2c94c;
+    --ok:#4ade80;--ok-bg:#12301f;--bad:#ff8a80;--bad-bg:#3a1714;--part:#f2c94c;--part-bg:#33290b;--chip:#2a2a2e;--arbg:#1b2430;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.stripes{height:8px;background:linear-gradient(#111 0 33.3%,var(--accent) 33.3% 66.6%,var(--gold) 66.6%)}
+.wrap{max-width:780px;margin:0 auto;padding:0 16px 80px}
+header.top{padding:28px 0 8px}
+header.top h1{margin:0 0 4px;font-size:1.9rem;letter-spacing:-.02em}
+header.top p{margin:0;color:var(--muted)}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px;align-items:center}
+.meta span{background:var(--chip);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:.85rem}
+.ar{font-family:"Segoe UI","Noto Naskh Arabic","Geeza Pro",Tahoma,Arial,sans-serif}
+.ar.block{display:block;background:var(--arbg);border-right:3px solid var(--accent);border-radius:6px;padding:6px 10px;margin:6px 0;font-size:.97rem;color:var(--muted);text-align:right}
+.gl{color:var(--muted);font-size:.92em;margin-inline-start:8px}
+.noar .ar{display:none!important}
+.progress{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0;border-bottom:1px solid var(--line);margin-bottom:8px}
+.progress .row{display:flex;justify-content:space-between;font-size:.85rem;color:var(--muted);margin-bottom:6px}
+.bar{height:8px;background:var(--chip);border-radius:99px;overflow:hidden}
+.bar>div{height:100%;width:0;background:var(--accent);transition:width .25s}
+h2.lvl{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin:34px 0 12px;font-size:1.15rem;border-bottom:2px solid var(--gold);padding-bottom:6px}
+h2.lvl em{font-style:normal;font-size:.8rem;color:var(--muted);font-weight:400}
+.q{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--line);border-radius:12px;padding:16px 18px;margin:0 0 14px}
+.q.correct{border-left-color:var(--ok)}
+.q.partial{border-left-color:var(--gold)}
+.q.wrong{border-left-color:var(--bad)}
+.q header{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.num{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-weight:700;font-size:.85rem}
+.chip{background:var(--chip);border-radius:999px;padding:2px 10px;font-size:.78rem;color:var(--muted)}
+.pts{margin-left:auto;font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.title{margin:0 0 4px;font-weight:600}
+.passage{background:var(--chip);border-left:3px solid var(--gold);border-radius:6px;padding:10px 14px;margin:8px 0 6px}
+.iq{margin:12px 0 4px;font-weight:500}
+.opt{display:flex;align-items:center;gap:10px;padding:8px 12px;margin:5px 0;border:1px solid var(--line);border-radius:8px;cursor:pointer}
+.opt:hover{border-color:var(--accent)}
+.opt input{accent-color:var(--accent)}
+.opt.ok{background:var(--ok-bg);border-color:var(--ok)}
+.opt.no{background:var(--bad-bg);border-color:var(--bad)}
+.dialog{font-size:1.05rem;line-height:2.2;margin-top:8px}
+.blank{font:inherit;padding:3px 8px;border:1px solid var(--line);border-bottom:2px solid var(--accent);border-radius:6px;background:var(--card);color:var(--ink);min-width:70px}
+.blank:focus{outline:2px solid var(--accent);outline-offset:1px}
+.blank.ok{border-color:var(--ok);background:var(--ok-bg)}
+.blank.no{border-color:var(--bad);background:var(--bad-bg)}
+.mrow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px dashed var(--line)}
+.mrow:last-child{border-bottom:0}
+.zone,.bank{display:flex;flex-wrap:wrap;gap:8px;padding:10px;border-radius:8px}
+.zone{min-height:54px;border:2px dashed var(--line);margin:8px 0 10px;align-items:center}
+.ph{color:var(--muted);font-size:.9rem}
+.tile{font:inherit;padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:var(--chip);color:var(--ink);cursor:pointer}
+.tile.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.tile:hover{border-color:var(--accent)}
+.btn{font:inherit;font-weight:600;padding:10px 20px;border-radius:10px;border:0;background:var(--accent);color:var(--accent-ink);cursor:pointer}
+.btn.ghost{background:var(--chip);color:var(--ink);border:1px solid var(--line)}
+.btn.small{padding:6px 12px;font-size:.88rem}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.audio{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:8px 0 10px}
+.hint{font-size:.85rem;color:var(--muted)}
+.fb{margin-top:12px;padding:10px 12px;border-radius:8px;font-size:.92rem;background:var(--chip)}
+.fb.ok{background:var(--ok-bg)}.fb.part{background:var(--part-bg)}.fb.bad{background:var(--bad-bg)}
+.fb p{margin:4px 0}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.result{background:var(--card);border:1px solid var(--line);border-top:6px solid var(--accent);border-radius:14px;padding:22px;margin:18px 0}
+.big{font-size:3.4rem;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.big small{font-size:1.3rem;font-weight:500;color:var(--muted);margin-left:6px}
+.result h3{margin:8px 0 4px;font-size:1.25rem}
+.lv{display:grid;grid-template-columns:1fr 60px;gap:4px 12px;align-items:center;margin:14px 0 4px;font-size:.9rem}
+.lv .bar{height:10px}
+.lv .bar>div{background:var(--gold);transition:none;width:0}
+footer{margin-top:40px;color:var(--muted);font-size:.82rem}
+
+@media print{
+  body{background:#fff!important;color:#111!important}
+  .stripes,header.top,.progress,#startPanel,#test,.actions,footer{display:none!important}
+  .wrap{max-width:none;padding:0}
+  #result{display:block!important}
+  .result{border:0!important;box-shadow:none!important;margin:0!important;padding:0!important}
+  .report-head{border-bottom:2px solid #222;padding-bottom:12px;margin-bottom:18px}
+  .report-section{break-inside:avoid;margin:14px 0}
+  .report-ar{direction:rtl;text-align:right;font-family:Tahoma,Arial,sans-serif}
+  .report-meta{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .report-score{font-size:28px;font-weight:800}
+  .print-note{display:none}
+}
+</style>
+</head>
+<body>
+<div class="stripes"></div>
+<div class="wrap">
+  <header class="top">
+    <h1>Deutsch A1 – Easy Practice Test</h1>
+    <p>Simple A1 practice · Take your time · You can try again</p>
+    <div class="ar block" dir="rtl" lang="ar">اقرأ التعليمات بالعربية إذا احتجت إلى المساعدة. الأسئلة والإجابات بالألمانية أو الإنجليزية.</div>
+    <div class="meta">
+      <span>20 short questions</span><span>20 points</span><span>About 20 min</span><span>Pass mark: 12 / 20</span>
+      <button class="btn small ghost" id="artoggle" type="button">🌐 Instructions: Arabic ON</button>
+    </div>
+  </header>
+
+  <section class="result" id="startPanel">
+    <h2>Participant details / بيانات المشارك</h2>
+    <label for="participantName"><b>Full name / الاسم الكامل</b></label>
+    <input id="participantName" class="blank" type="text" required maxlength="80"
+      placeholder="Enter your full name / أدخل اسمك الكامل" style="display:block;width:100%;max-width:420px;margin:10px 0">
+    <p class="hint">Enter your name before starting the test. / أدخل اسمك قبل بدء الاختبار.</p>
+    <button class="btn" id="startTest" type="button">Start test / ابدأ الاختبار</button>
+  </section>
+
+  <div class="progress exam-content" hidden>
+    <div class="row"><span id="count">0 / 20 answered</span><span>Viel Erfolg! 🍀</span></div>
+    <div class="bar"><div id="fill"></div></div>
+  </div>
+
+  <div id="result"></div>
+  <div id="test" class="exam-content" hidden></div>
+
+  <div class="actions exam-content" id="actions" hidden>
+    <button class="btn" id="submit">Submit test</button>
+  </div>
+
+  <footer>
+    Each question is worth 1 point. Some questions have several small parts, so you can earn partial points.
+    Everything is scored automatically. Typed answers ignore capital letters and accept ä/ö/ü/ß written as ae/oe/ue/ss.
+    Arabic is shown for instructions only. Use the 🌐 button to hide or show it.
+  </footer>
+</div>
+
+<script>
+/* ===================== DATA ===================== */
+const LEVELS=[
+  {name:"Level 1 · First words"},
+  {name:"Level 2 · Everyday German"},
+  {name:"Level 3 · Simple sentences"},
+  {name:"Level 4 · A1 review"}
+];
+const RF=["Richtig","Falsch"];
+const ART=["ein","eine","einen","einem"];
+
+/* Option strings may contain "German | Arabic gloss". Match left items too. */
+const Q=[
+/* ---------- STUFE 1 ---------- */
+{lv:1,topic:"Begrüßung",type:"choice",
+ title:"Choose the correct answer.",ar:"اختر الإجابة الصحيحة.",
+ items:[{q:"Which greeting do you use when you arrive at a party in the evening?",ar:"أي تحية تستخدمها عند وصولك إلى حفلة في المساء؟",
+  options:["Guten Morgen! | صباح الخير!","Guten Tag! | مرحباً (نهاراً)","Guten Abend! | مساء الخير!","Gute Nacht! | تصبح على خير!"],answer:2}],
+ why:"„Guten Abend“ greets people in the evening. „Gute Nacht“ is only said when going to bed.",
+ whyAr:"«Guten Abend» تُقال في المساء، أما «Gute Nacht» فتُقال فقط عند الذهاب إلى النوم."},
+
+{lv:1,topic:"Sich vorstellen",type:"fill",
+ title:"Complete the dialogue (one word per gap). Words: heiße / aus",ar:"أكمل الحوار بكلمة واحدة في كل فراغ. (الكلمات: heiße / aus)",
+ tpl:"– Wie heißt du?\n– Ich {0} Karim. Ich komme {1} Algerien.",
+ tr:"– ما اسمك؟ – اسمي كريم. أنا من الجزائر.",
+ blanks:[{a:["heiße","bin"],w:8},{a:["aus"],w:6}],
+ why:"„Ich heiße …“ or „Ich bin …“ gives your name; „Ich komme aus + country“ gives your origin.",
+ whyAr:"نقول «Ich heiße …» أو «Ich bin …» للتعريف بالاسم، و«Ich komme aus + البلد» لبلد الأصل."},
+
+{lv:1,topic:"Zahlen",type:"choice",
+ title:"Choose the correct German word for the number.",ar:"اختر الكلمة الألمانية الصحيحة للعدد.",
+ items:[{q:"27 = ?",ar:"العدد 27",options:["siebenundzwanzig","zweiundsiebzig","siebzehn","siebenundsechzig"],answer:0}],
+ why:"In German the units come first: 7 + und + 20 → siebenundzwanzig.",
+ whyAr:"في الألمانية تأتي الآحاد أولاً: 7 + und + 20 = siebenundzwanzig (27)."},
+
+{lv:1,topic:"Nomen & Artikel",type:"match",
+ title:"Match each noun with its article.",ar:"اربط كل اسم بأداة التعريف الصحيحة.",
+ pairs:[["Tisch | طاولة","der"],["Lampe | مصباح","die"],["Buch | كتاب","das"],["Stuhl | كرسي","der"]],
+ why:"Always learn a noun together with its article: der Tisch, die Lampe, das Buch, der Stuhl.",
+ whyAr:"تعلّم كل اسم مع أداة تعريفه: der Tisch، die Lampe، das Buch، der Stuhl."},
+
+{lv:1,topic:"W-Fragen",type:"choice",
+ title:"Choose the correct question word.",ar:"اختر أداة الاستفهام الصحيحة.",
+ items:[{q:"___ kommst du? – Aus Polen.",ar:"___ أنت قادم؟ – من بولندا.",
+  options:["Wo | أين (مكان)","Woher | من أين","Wohin | إلى أين","Wer | من (شخص)"],answer:1}],
+ why:"„Woher“ asks about origin, „Wo“ about location, „Wohin“ about direction, „Wer“ about a person.",
+ whyAr:"«Woher» يسأل عن الأصل (من أين)، «Wo» عن المكان، «Wohin» عن الاتجاه، «Wer» عن الشخص."},
+
+/* ---------- STUFE 2 ---------- */
+{lv:2,topic:"Familie · Possessivartikel",type:"choice",
+ title:"Choose the correct possessive article.",ar:"اختر أداة الملكية الصحيحة.",
+ items:[{q:"Das ist Peter. ___ Mutter heißt Anna.",ar:"هذا بيتر. ___ أمه تسمى آنا.",options:["Sein","Seine","Ihre","Dein"],answer:1}],
+ why:"Peter is male → „sein-“. „Mutter“ is feminine → ending -e: seine Mutter.",
+ whyAr:"بيتر مذكر ← sein-. وكلمة Mutter مؤنثة ← نضيف -e: seine Mutter."},
+
+{lv:2,topic:"Uhrzeit",type:"choice",
+ title:"Choose the correct everyday way to say the time.",ar:"اختر الطريقة الصحيحة لقول الوقت في الحياة اليومية.",
+ items:[{q:"08:30 → Es ist …",ar:"الساعة 08:30",options:["halb neun","halb acht","Viertel nach acht","Viertel vor neun"],answer:0}],
+ why:"„Halb neun“ = half an hour before nine = 8:30. German looks ahead to the next hour.",
+ whyAr:"«halb neun» = نصف ساعة قبل التاسعة = 8:30. الألمانية تنظر إلى الساعة القادمة."},
+
+{lv:2,topic:"Verben · Konjugation",type:"fill",
+ title:"Choose the correct verb form.",ar:"اختر صيغة الفعل الصحيحة.",
+ tpl:"Du {0} (sprechen) sehr gut Deutsch.\nEr {1} (fahren) jeden Tag mit dem Bus.",
+ tr:"أنت تتكلم الألمانية جيداً جداً. هو يذهب كل يوم بالحافلة.",
+ blanks:[{options:["sprechst","sprichst","spricht"],a:"sprichst"},{options:["fahrt","fährt","fahren"],a:"fährt"}],
+ why:"Irregular verbs change their vowel with du/er: du sprichst, er fährt.",
+ whyAr:"الأفعال الشاذة تغيّر حرفها مع du/er: du sprichst، er fährt."},
+
+{lv:2,topic:"Hören · Einkaufen",type:"choice",
+ title:"Listen (play as often as you like), then answer. Tip: use “Show transcript” if you cannot hear German.",
+ ar:"استمع (يمكنك التكرار)، ثم أجب. نصيحة: استخدم «Show transcript» إذا لم تسمع الصوت الألماني.",
+ audio:"Guten Tag. Ich möchte zwei Brötchen und einen Kaffee, bitte. Das macht vier Euro fünfzig.",
+ items:[
+  {q:"What does the customer order?",ar:"ماذا يطلب الزبون؟",
+   options:["Zwei Brötchen und einen Kaffee | رغيفان صغيران وقهوة","Zwei Kaffee und ein Brötchen | قهوتان ورغيف","Zwei Brötchen und einen Tee | رغيفان وشاي","Ein Brötchen und zwei Kaffee | رغيف وقهوتان"],answer:0},
+  {q:"How much does it cost?",ar:"كم المبلغ؟",options:["4,50 €","5,40 €","14,50 €","4,15 €"],answer:0}
+ ],
+ why:"Transcript: „Guten Tag. Ich möchte zwei Brötchen und einen Kaffee, bitte. Das macht vier Euro fünfzig.“",
+ whyAr:"الترجمة: «مرحباً. أريد رغيفين صغيرين وقهوة، من فضلك. المجموع أربعة يورو وخمسون سنتاً.»"},
+
+{lv:2,topic:"Satzbau · Trennbare Verben",type:"order",
+ title:"Build a correct sentence: tap the words in the right order.",ar:"رتّب الكلمات لتكوين جملة صحيحة.",
+ tr:"أستيقظ في الساعة السابعة.",
+ words:["Ich","stehe","um","sieben","Uhr","auf"],
+ accept:["Ich stehe um sieben Uhr auf","Um sieben Uhr stehe ich auf"],
+ why:"The conjugated verb is in position 2; the separable prefix „auf“ goes to the end (aufstehen).",
+ whyAr:"الفعل المصرّف في الموضع الثاني، والبادئة المنفصلة «auf» تذهب إلى نهاية الجملة (aufstehen)."},
+
+/* ---------- STUFE 3 ---------- */
+{lv:3,topic:"Shopping · Articles",type:"fill",
+ title:"Choose the correct word.",ar:"اختر الكلمة الصحيحة لإكمال الجملة.",
+ tpl:"Das ist {0} Buch. Das ist {1} Tasche.",
+ blanks:[{options:["ein","eine"],a:"ein"},{options:["ein","eine"],a:"eine"}],
+ why:"Use „ein“ with das Buch and „eine“ with die Tasche.",
+ whyAr:"في حالة Akkusativ يتغيّر المذكر فقط: ein Hut ← einen Hut. أما المؤنث فيبقى eine Jacke."},
+
+{lv:3,topic:"Everyday verbs",type:"fill",
+ title:"Choose the correct verb.",ar:"اختر الفعل الصحيح لإكمال الجملة.",
+ tpl:"Ich {0} Wasser. (trinken)\nDu {1} Deutsch. (lernen)",
+ blanks:[{options:["trinke","trinkst","trinkt"],a:"trinke"},{options:["lerne","lernst","lernt"],a:"lernst"}],
+ why:"With „ich“, use „trinke“. With „du“, use „lernst“.",
+ whyAr:"ich muss، du kannst – الأفعال المساعدة شاذة في المفرد."},
+
+{lv:3,topic:"Simple negatives",type:"fill",
+ title:"Choose the correct word.",ar:"اختر الكلمة الصحيحة.",
+ tpl:"Ich bin {0} müde.\nIch habe {1} Auto.",
+ blanks:[{options:["nicht","kein"],a:"nicht"},{options:["kein","nicht"],a:"kein"}],
+ why:"Use „nicht“ with an adjective and „kein“ with a noun.",
+ whyAr:"الأسماء تُنفى بـ kein- (keine Zeit)، والصفات تُنفى بـ nicht (nicht gut)."},
+
+{lv:3,topic:"Lesen · Wohnen",type:"choice",
+ title:"Read the ad and decide: richtig or falsch?",ar:"اقرأ الإعلان وقرّر: صحيح أم خطأ؟",
+ text:"WOHNUNG ZU VERMIETEN\n2 Zimmer, Küche, Bad, Balkon · 55 m² · 3. Stock (kein Aufzug)\nMiete: 450 € warm · frei ab 1. Dezember\nHaustiere: leider nicht erlaubt.",
+ arText:"شقة للإيجار\nغرفتان، مطبخ، حمّام، شرفة · 55 م² · الطابق الثالث (لا يوجد مصعد)\nالإيجار: 450 يورو شاملاً · متاحة من 1 ديسمبر\nالحيوانات الأليفة: للأسف غير مسموحة.",
+ items:[
+  {q:"Die Wohnung hat drei Zimmer.",ar:"الشقة فيها ثلاث غرف.",options:RF,answer:1,fixed:true},
+  {q:"Die Wohnung hat einen Balkon.",ar:"الشقة فيها شرفة.",options:RF,answer:0,fixed:true},
+  {q:"Es gibt keinen Aufzug.",ar:"لا يوجد مصعد.",options:RF,answer:0,fixed:true},
+  {q:"Man darf einen Hund mitbringen.",ar:"يُسمح بإحضار كلب.",options:RF,answer:1,fixed:true}
+ ],
+ why:"2 Zimmer (not 3); Balkon ✓; kein Aufzug ✓; pets not allowed → no dog.",
+ whyAr:"غرفتان (وليس ثلاثاً)؛ يوجد شرفة؛ لا يوجد مصعد؛ الحيوانات الأليفة غير مسموحة."},
+
+{lv:3,topic:"Orientierung · Präpositionen",type:"fill",
+ title:"Choose the correct preposition.",ar:"اختر حرف الجر الصحيح.",
+ tpl:"a) Entschuldigung, wie komme ich {0} Bahnhof?\nb) Das Buch liegt {1} Tisch.",
+ tr:"أ) عفواً، كيف أصل إلى المحطة؟ ب) الكتاب موجود على الطاولة.",
+ blanks:[{options:["zum","nach","im","bei"],a:"zum"},{options:["auf dem","auf den","auf der","aufs"],a:"auf dem"}],
+ why:"„zum“ = zu + dem (to the station). For location („Wo?“) „auf“ takes the dative: auf dem Tisch.",
+ whyAr:"«zum» = zu + dem (إلى المحطة). للمكان (Wo؟) مع auf نستخدم Dativ: auf dem Tisch."},
+
+/* ---------- STUFE 4 ---------- */
+{lv:4,topic:"Daily routine",type:"fill",
+ title:"Choose the correct verb form.",ar:"اختر صيغة الفعل الصحيحة.",
+ tpl:"Ich {0} in Algier. (wohnen)\\nWir {1} Deutsch. (lernen)",
+ blanks:[{options:["wohne","wohnst","wohnt"],a:"wohne"},{options:["lerne","lernen","lernt"],a:"lernen"}],
+ why:"With „ich“ use „wohne“. With „wir“ use „lernen“."},
+
+{lv:4,topic:"Useful phrases",type:"choice",
+ title:"Choose the best answer.",ar:"اختر الإجابة المناسبة.",
+ items:[{q:"What do you say when you want water?",options:["Ich möchte Wasser, bitte.","Ich heiße Wasser.","Guten Nacht.","Auf Wiedersehen."],answer:0}],
+ why:"„Ich möchte Wasser, bitte“ is a polite way to ask for water.",
+ whyAr:""},
+
+{lv:4,topic:"Alltagsdialoge",type:"match",
+ title:"Match each question with the best answer. One answer is extra.",ar:"اربط كل سؤال بأنسب إجابة. هناك إجابة زائدة.",
+ pairs:[
+  ["Wie viel kostet das T-Shirt? | كم سعر القميص؟","Es kostet 15 Euro."],
+  ["Wann beginnt der Deutschkurs? | متى يبدأ كورس الألمانية؟","Um 9 Uhr."],
+  ["Was machst du am Wochenende? | ماذا تفعل في عطلة نهاية الأسبوع؟","Ich besuche meine Oma."],
+  ["Wie ist das Wetter heute? | كيف الطقس اليوم؟","Es regnet."]
+ ],
+ extra:["Danke, gut."],
+ why:"Look at the question word: Wie viel → price, Wann → time, Was → activity, Wie ist das Wetter → weather.",
+ whyAr:"انتبه لأداة السؤال: Wie viel ← السعر، Wann ← الوقت، Was ← النشاط، Wie ist das Wetter ← الطقس."},
+
+{lv:4,topic:"Lesen · E-Mail",type:"choice",
+ title:"Read the e-mail and choose the correct answers.",ar:"اقرأ الرسالة واختر الإجابات الصحيحة.",
+ text:"Hallo Lena,\nam Samstag habe ich Geburtstag und mache eine kleine Party. Sie beginnt um 19 Uhr bei mir zu Hause (Bahnhofstraße 12). Kannst du kommen? Bitte bring einen Salat mit – ich habe leider keine Zeit zum Kochen.\nViele Grüße\nTom",
+ arText:"مرحباً لينا،\nيوم السبت عيد ميلادي وسأقيم حفلة صغيرة. تبدأ الساعة 19:00 في بيتي (شارع المحطة 12). هل تستطيعين الحضور؟ من فضلك أحضري سلطة معك – للأسف ليس عندي وقت للطبخ.\nتحياتي\nتوم",
+ items:[
+  {q:"Wann beginnt die Party?",ar:"متى تبدأ الحفلة؟",options:["Am Samstag um 19 Uhr | يوم السبت الساعة 19:00","Am Sonntag um 19 Uhr | يوم الأحد الساعة 19:00","Am Samstag um 9 Uhr | يوم السبت الساعة 9:00","Am Freitag um 17 Uhr | يوم الجمعة الساعة 17:00"],answer:0},
+  {q:"Was soll Lena mitbringen?",ar:"ماذا يجب أن تحضر لينا؟",options:["Einen Kuchen | كعكة","Getränke | مشروبات","Einen Salat | سلطة","Nichts | لا شيء"],answer:2}
+ ],
+ why:"„Am Samstag … um 19 Uhr“ and „Bitte bring einen Salat mit“ (mitbringen = bring along).",
+ whyAr:"«Am Samstag … um 19 Uhr» و«Bitte bring einen Salat mit» (mitbringen = يُحضر معه)."},
+
+{lv:4,topic:"Sich vorstellen · Lückentext",type:"fill",
+ title:"Introduce yourself: complete the text with the correct words.",ar:"عرّف بنفسك: أكمل النص بالكلمات الصحيحة.",
+ tpl:"Hallo! Ich {0} Karim. Ich {1} aus Algerien und {2} in Algier. Ich {3} Student.",
+ tr:"مرحباً! اسمي كريم. أنا من الجزائر وأسكن في الجزائر العاصمة. أنا طالب.",
+ blanks:[
+  {options:["heiße","heißt","heißen"],a:"heiße"},{options:["komme","kommst","kommen"],a:"komme"},
+  {options:["wohne","wohnt","wohnen"],a:"wohne"},{options:["bin","bist","ist"],a:"bin"}
+ ],
+ why:"With „ich“ the verb ends in -e (heiße, komme, wohne); „sein“ becomes „bin“.",
+ whyAr:"مع «ich» ينتهي الفعل بـ -e (heiße، komme، wohne)، والفعل sein يصبح «bin»."}
+];
+
+/* ===================== HELPERS ===================== */
+const $=(s,r=document)=>r.querySelector(s);
+const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const nl=s=>esc(s).replace(/\n/g,"<br>");
+const AR=t=>t?`<div class="ar block" dir="rtl" lang="ar">${nl(t)}</div>`:"";
+const ARi=t=>"";
+const sp=s=>{const p=String(s).split(" | ");return [p[0],p[1]||""]};
+const norm=s=>String(s).toLowerCase().replace(/ä/g,"ae").replace(/ö/g,"oe").replace(/ü/g,"ue").replace(/ß/g,"ss")
+  .replace(/[^a-z0-9 ]/g," ").replace(/\s+/g," ").trim();
+const cmp=s=>norm(s).replace(/ /g,"");
+const fmt=n=>parseFloat(n.toFixed(2));
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const joinA=a=>[].concat(a).join(" / ");
+let submitted=false;
+
+/* ===================== RENDER ===================== */
+function renderBody(q,i){
+  let h="";
+  if(q.type==="choice"){
+    if(q.text) h+=`<div class="passage">${nl(q.text)}</div>`;
+    if(q.audio){
+      h+=`<div class="audio">
+        <button type="button" class="btn small" data-play="${i}" data-rate="0.8">▶ Play</button>
+        <button type="button" class="btn small ghost" data-play="${i}" data-rate="0.55">🐢 Slow</button>
+        <button type="button" class="btn small ghost" data-transcript="${i}">Show transcript</button>
+        <span class="hint" id="aud${i}"></span></div>`;
+    }
+    q.items.forEach((it,j)=>{
+      const idx=it.options.map((_,k)=>k);
+      const order=it.fixed?idx:shuffle(idx);
+      h+=`<div class="item"><p class="iq">${esc(it.q)}</p>`+
+        order.map(k=>{const [m,g]=sp(it.options[k]);
+          return `<label class="opt"><input type="radio" name="q${i}_${j}" value="${k}"><span>${esc(m)}</span></label>`}).join("")+`</div>`;
+    });
+  }
+  else if(q.type==="fill"){
+    const html=esc(q.tpl).replace(/\{(\d+)\}/g,(m,n)=>{
+      const b=q.blanks[n];
+      if(b.options) return `<select class="blank" data-q="${i}" data-b="${n}"><option value="">…</option>${b.options.map(o=>`<option value="${esc(o)}">${esc(o)}</option>`).join("")}</select>`;
+      return `<input class="blank" type="text" data-q="${i}" data-b="${n}" size="${b.w||10}" autocomplete="off" autocapitalize="off" spellcheck="false">`;
+    }).replace(/\n/g,"<br>");
+    h+=`<div class="dialog">${html}</div>`;
+  }
+  else if(q.type==="match"){
+    const opts=shuffle([...new Set([...q.pairs.map(p=>p[1]),...(q.extra||[])])]);
+    h+=q.pairs.map((p,j)=>{const [m,g]=sp(p[0]);
+      return `<div class="mrow"><span>${esc(m)}</span>
+      <select class="blank" data-q="${i}" data-b="${j}"><option value="">…</option>${opts.map(o=>`<option value="${esc(o)}">${esc(o)}</option>`).join("")}</select></div>`}).join("");
+  }
+  else if(q.type==="order"){
+    q._sel=[]; q._tiles=shuffle(q.words.map((_,k)=>k));
+    h+=`<div class="zone" id="zone${i}"></div><div class="bank" id="bank${i}"></div>
+        <button type="button" class="btn small ghost" data-reset="${i}">Reset</button>
+        <span class="hint">Capital letters and punctuation are ignored.</span>`;
+  }
+  return h;
+}
+
+function drawOrder(i){
+  const q=Q[i];
+  $("#zone"+i).innerHTML=q._sel.length
+    ? q._sel.map(k=>`<button type="button" class="tile on" data-rm="${k}" data-q="${i}">${esc(q.words[k])}</button>`).join("")
+    : `<span class="ph">Tap the words below to build the sentence…</span>`;
+  $("#bank"+i).innerHTML=q._tiles.filter(k=>!q._sel.includes(k))
+    .map(k=>`<button type="button" class="tile" data-add="${k}" data-q="${i}">${esc(q.words[k])}</button>`).join("");
+}
+
+function build(){
+  submitted=false;
+  let h="",last=0;
+  Q.forEach((q,i)=>{
+    if(q.lv!==last){
+      last=q.lv;
+      const ids=Q.map((x,k)=>x.lv===q.lv?k+1:null).filter(Boolean);
+      h+=`<h2 class="lvl"><span>${LEVELS[q.lv-1].name}</span><em>Questions ${ids[0]}–${ids[ids.length-1]}</em></h2>`;
+    }
+    h+=`<article class="q" id="q${i}"><header><span class="num">${i+1}</span><span class="chip">${esc(q.topic)}</span><span class="pts" id="p${i}">1 pt</span></header>
+      <p class="title">${esc(q.title)}</p>${AR(q.ar)}<div class="body">${renderBody(q,i)}</div><div class="fb" id="fb${i}" hidden></div></article>`;
+  });
+  $("#test").innerHTML=h;
+  Q.forEach((q,i)=>{if(q.type==="order")drawOrder(i)});
+  $("#result").innerHTML="";
+  $("#actions").innerHTML=`<button class="btn" id="submit">Submit test</button>`;
+  updateProgress();
+}
+
+/* ===================== PROGRESS ===================== */
+function isAnswered(q,i){
+  const c=$("#q"+i);
+  if(q.type==="choice") return !!c.querySelector("input:checked");
+  if(q.type==="fill"||q.type==="match") return $$(".blank",c).some(e=>e.value.trim()!=="");
+  if(q.type==="order") return q._sel.length>0;
+  return false;
+}
+function updateProgress(){
+  if(submitted)return;
+  const n=Q.filter((q,i)=>isAnswered(q,i)).length;
+  $("#count").textContent=`${n} / ${Q.length} answered`;
+  $("#fill").style.width=(n/Q.length*100)+"%";
+}
+
+/* ===================== GRADING ===================== */
+const CA='Correct answer / : ';
+const grade={
+  choice(q,i){
+    const per=1/q.items.length;let s=0;const fb=[];
+    q.items.forEach((it,j)=>{
+      const labels=$$(`input[name="q${i}_${j}"]`).map(r=>r.closest(".opt"));
+      const chosen=$(`input[name="q${i}_${j}"]:checked`);
+      const ok=chosen&&+chosen.value===it.answer;
+      if(ok)s+=per;
+      labels.forEach(l=>{
+        const v=+l.querySelector("input").value;
+        if(v===it.answer)l.classList.add("ok");
+        else if(chosen&&+chosen.value===v)l.classList.add("no");
+      });
+      if(!ok)fb.push(`${q.items.length>1?`<b>${j+1})</b> `:""}${CA}<b>${esc(sp(it.options[it.answer])[0])}</b>`);
+    });
+    return {score:s,fb};
+  },
+  fill(q,i){
+    const per=1/q.blanks.length;let s=0;const wrong=[];
+    q.blanks.forEach((b,n)=>{
+      const el=$(`#q${i} .blank[data-b="${n}"]`);
+      const ok=[].concat(b.a).some(x=>cmp(x)===cmp(el.value));
+      el.classList.add(ok?"ok":"no");
+      if(ok)s+=per;else wrong.push(`${q.blanks.length>1?`<b>${n+1})</b> `:""}<b>${esc(joinA(b.a))}</b>`);
+    });
+    return {score:s,fb:wrong.length?[CA+wrong.join(" &nbsp; ")]:[]};
+  },
+  match(q,i){
+    const per=1/q.pairs.length;let s=0;const wrong=[];
+    q.pairs.forEach((p,j)=>{
+      const el=$(`#q${i} .blank[data-b="${j}"]`);
+      const ok=el.value===p[1];
+      el.classList.add(ok?"ok":"no");
+      if(ok)s+=per;else wrong.push(`${esc(sp(p[0])[0])} → <b>${esc(p[1])}</b>`);
+    });
+    return {score:s,fb:wrong.length?[CA+wrong.join(" &nbsp;|&nbsp; ")]:[]};
+  },
+  order(q,i){
+    const sentence=q._sel.map(k=>q.words[k]).join(" ");
+    const ok=q.accept.some(a=>norm(a)===norm(sentence));
+    $$(`#q${i} .tile`).forEach(t=>t.disabled=true);
+    return {score:ok?1:0,fb:ok?[]:[`${CA}<b>${esc(q.accept[0])}.</b>`]};
+  }
+};
+
+function submit(){
+  const empty=Q.filter((q,i)=>!isAnswered(q,i)).length;
+  if(empty&&!confirm(`${empty} question(s) are still empty and will score 0. Submit anyway?`))return;
+  submitted=true;
+  if("speechSynthesis" in window)speechSynthesis.cancel();
+  let total=0;const byLv=LEVELS.map(()=>0);const weak=[];
+  Q.forEach((q,i)=>{
+    const r=grade[q.type](q,i);
+    const score=Math.min(1,r.score);
+    total+=score;byLv[q.lv-1]+=score;
+    if(score<0.5&&!weak.includes(q.topic))weak.push(q.topic);
+    // Keep results private: do not reveal correct answers or per-question feedback.
+    const card=$("#q"+i);
+    card.classList.remove("correct","partial","wrong");
+    $$(".ok,.no",card).forEach(el=>el.classList.remove("ok","no"));
+    $("#p"+i).textContent="";
+    $("#fb"+i).hidden=true;
+  });
+  $$("#test input,#test select,#test button.tile").forEach(e=>e.disabled=true);
+  showResult(fmt(total),byLv,weak);
+}
+
+function showResult(total,byLv,weak){
+  const passed=total>=12;
+  const verdict=passed?"Bestanden / ناجح":"Nicht bestanden / لم يجتز الاختبار";
+  const comment=total>=18
+    ? ["Ausgezeichnete Leistung. Die A1-Kenntnisse sind sehr sicher; der Einstieg in A2 wird empfohlen.","أداء ممتاز. مستوى A1 قوي جداً، ويُنصح بالبدء في A2."]
+    : total>=16
+    ? ["Sehr gute Leistung. Nur wenige Wiederholungen sind nötig; regelmäßiges Üben wird empfohlen.","أداء جيد جداً. يحتاج المشارك إلى مراجعة بسيطة مع مواصلة التدريب."]
+    : total>=14
+    ? ["Gute Leistung. Die Grundlagen sind vorhanden. Die unten genannten Themen sollten wiederholt werden.","أداء جيد. الأساسيات موجودة، ويُنصح بمراجعة المواضيع المذكورة أدناه."]
+    : passed
+    ? ["Die Mindestpunktzahl wurde erreicht. Eine gezielte Wiederholung der schwächeren Themen wird empfohlen.","تم تحقيق درجة النجاح. يُنصح بمراجعة المواضيع التي تحتاج إلى تحسين."]
+    : ["Die Mindestpunktzahl wurde noch nicht erreicht. Wiederholen Sie die A1-Grundlagen und machen Sie anschließend einen neuen Versuch.","لم يتم تحقيق درجة النجاح بعد. يُنصح بمراجعة أساسيات A1 ثم إعادة الاختبار."];
+  const topics=weak.length?weak.join(", "):"Keine besonderen Schwächen festgestellt / لا توجد نقاط ضعف واضحة";
+  const reportLevels=[
+    "Grundlagen / الأساسيات",
+    "Alltag / الحياة اليومية",
+    "Einfache Sätze / الجمل البسيطة",
+    "A1-Wiederholung / مراجعة A1"
+  ];
+  const levelRows=byLv.map((score,k)=>`<div>${reportLevels[k]}</div><b>${fmt(score)} / 5</b>`).join("");
+  const now=new Date().toLocaleDateString("de-DE");
+  const safeName=esc(window.participantName||"");
+  $("#result").innerHTML=`<section class="result" id="res">
+    <div class="report-head">
+      <h2>Deutsch A1 – Prüfungsbericht</h2>
+      <h3 class="report-ar">تقرير اختبار اللغة الألمانية – المستوى A1</h3>
+      <p><b>Teilnehmer/in / اسم المشارك:</b> ${safeName}</p>
+      <p><b>Datum / التاريخ:</b> ${now}</p>
+    </div>
+    <div class="report-section report-meta">
+      <div><b>Ergebnis / النتيجة</b><div class="report-score">${total} / 20</div></div>
+      <div><b>Bestanden? / هل نجح؟</b><div class="report-score">${passed?"Ja / نعم":"Nein / لا"}</div></div>
+    </div>
+    <div class="report-section">
+      <h3>Bewertung / التقييم</h3>
+      <p><b>${verdict}</b></p>
+      <p>${comment[0]}</p>
+      <p class="report-ar">${comment[1]}</p>
+    </div>
+    <div class="report-section">
+      <h3>Ergebnis nach Bereichen / النتيجة حسب الأقسام</h3>
+      <div class="lv">${levelRows}</div>
+    </div>
+    <div class="report-section">
+      <h3>Zu wiederholende Themen / المواضيع التي يُنصح بمراجعتها</h3>
+      <p>${esc(topics)}</p>
+    </div>
+    <div class="report-section">
+      <h3>Empfehlung für die Lehrkraft / توصية للأستاذ</h3>
+      <p>Es wird empfohlen, diesen Bericht der Deutschlehrkraft zur Dokumentation und zur weiteren pädagogischen Begleitung vorzulegen.</p>
+      <p class="report-ar">يُنصح بتقديم هذا التقرير إلى أستاذ اللغة الألمانية للاطلاع عليه وتوثيق النتيجة وتحديد خطوات الدعم والمتابعة المناسبة.</p>
+    </div>
+    <p class="hint print-note">Drucken und „Als PDF speichern“ auswählen. / اختر «طباعة» ثم «حفظ بصيغة PDF».</p>
+  </section>`;
+  $("#actions").hidden=false;
+  $("#actions").innerHTML=`<button class="btn" id="printReport">Print report / Drucken / طباعة التقرير</button>
+    <button class="btn ghost" id="retry">Retake test / اختبار جديد</button>`;
+  $("#res").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+/* ===================== AUDIO ===================== */
+function speak(text,rate){
+  if(!("speechSynthesis" in window))return false;
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang="de-DE";u.rate=rate;
+  const v=speechSynthesis.getVoices().find(v=>/^de/i.test(v.lang));
+  if(v)u.voice=v;
+  speechSynthesis.speak(u);
+  return true;
+}
+
+/* ===================== EVENTS ===================== */
+document.addEventListener("click",e=>{
+  const b=e.target.closest("button");if(!b)return;
+  if(b.id==="artoggle"){
+    const off=document.body.classList.toggle("noar");
+    b.textContent="🌐 Instructions: Arabic "+(off?"OFF":"ON");return;
+  }
+  if(b.id==="startTest"){
+    const field=$("#participantName");
+    const name=field.value.trim();
+    if(!name){field.focus();field.setCustomValidity("Please enter your name / يرجى إدخال الاسم");field.reportValidity();return}
+    window.participantName=name;
+    $$(".exam-content").forEach(el=>el.hidden=false);
+    $("#startPanel").hidden=true;
+    $("#test").scrollIntoView({behavior:"smooth",block:"start"});
+    return;
+  }
+  if(b.id==="printReport"){window.print();return}
+  if(b.id==="submit")return submit();
+  if(b.id==="retry"){build();$("#result").innerHTML="";$("#test").hidden=false;$("#actions").hidden=false;window.scrollTo({top:0,behavior:"smooth"});return}
+  if(b.id==="totop")return $("#res").scrollIntoView({behavior:"smooth"});
+  if(b.dataset.play!==undefined){
+    const i=+b.dataset.play,hint=$("#aud"+i);
+    hint.textContent=speak(Q[i].audio,+b.dataset.rate)?"No German voice? Use “Show transcript”.":"Audio is not supported here – please read the transcript.";
+    return;
+  }
+  if(b.dataset.transcript!==undefined){
+    const i=+b.dataset.transcript;$("#aud"+i).innerHTML="📝 "+esc(Q[i].audio);return;
+  }
+  if(submitted)return;
+  const i=+b.dataset.q;
+  if(b.dataset.add!==undefined){Q[i]._sel.push(+b.dataset.add);drawOrder(i);updateProgress()}
+  else if(b.dataset.rm!==undefined){Q[i]._sel=Q[i]._sel.filter(k=>k!==+b.dataset.rm);drawOrder(i);updateProgress()}
+  else if(b.dataset.reset!==undefined){const j=+b.dataset.reset;Q[j]._sel=[];drawOrder(j);updateProgress()}
+});
+document.addEventListener("input",updateProgress);
+document.addEventListener("change",updateProgress);
+if("speechSynthesis" in window)speechSynthesis.getVoices();
+
+build();
+$("#actions").hidden=true;
+</script>
+</body>
+</html>
